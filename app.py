@@ -12,12 +12,15 @@ from sklearn.metrics import (accuracy_score, precision_score, recall_score,
 st.set_page_config(page_title="Bank Marketing Study", layout="wide")
 
 st.title("🏦 Bank Marketing Campaign Prediction")
-st.write("An end-to-end ML study comparing 6 classification models.")
+st.markdown("""
+This application evaluates campaign data using 6 different Machine Learning models. 
+Upload your test data to see comparative performance metrics and visualizations.
+""")
 
 # Define the model folder path
 MODEL_PATH = "model"
 
-# --- SIDEBAR: Model Selection (Requirement B) ---
+# --- SIDEBAR: Model Selection ---
 st.sidebar.header("Model Configuration")
 model_choice = st.sidebar.selectbox(
     "Select a Classification Model", 
@@ -32,16 +35,34 @@ def load_helpers():
         encoders = pickle.load(f)
     return scaler, encoders
 
-# --- MAIN PAGE: Dataset Upload (Requirement A) ---
+# --- DOWNLOAD SAMPLE DATA FOR EVALUATOR ---
+st.sidebar.markdown("---")
+st.sidebar.write("🛠️ **Evaluator Tools**")
+try:
+    # Providing the sample file you created earlier
+    sample_df = pd.read_csv('test_data.csv', sep=';')
+    csv_sample = sample_df.to_csv(index=False, sep=';').encode('utf-8')
+    
+    st.sidebar.download_button(
+        label="📥 Download Test Data",
+        data=csv_sample,
+        file_name='bank_test_data.csv',
+        mime='text/csv',
+        help="Download this file to test the app's upload functionality."
+    )
+except Exception:
+    st.sidebar.warning("Sample test file not found. Ensure 'test_data.csv' is in the root directory.")
+
+# --- MAIN PAGE: Dataset Upload ---
 uploaded_file = st.file_uploader("Upload your test CSV data (Semicolon ';' separated)", type="csv")
 
 if uploaded_file is not None:
     # Read data
     test_df = pd.read_csv(uploaded_file, sep=';')
-    st.subheader("Data Preview")
+    st.subheader("📋 Data Preview")
     st.dataframe(test_df.head())
 
-    if st.button(f"Run Analysis with {model_choice}"):
+    if st.button(f"🚀 Run Analysis with {model_choice}"):
         try:
             scaler, encoders = load_helpers()
             
@@ -67,7 +88,8 @@ if uploaded_file is not None:
                 y_pred = model.predict(X_eval_scaled)
                 y_prob = model.predict_proba(X_eval_scaled)[:, 1] if hasattr(model, "predict_proba") else y_pred
 
-                # --- DISPLAY METRICS (Requirement C) ---
+                # --- DISPLAY METRICS ---
+                st.markdown("---")
                 st.subheader(f"📊 Evaluation Metrics: {model_choice}")
                 m1, m2, m3, m4 = st.columns(4)
                 m1.metric("Accuracy", f"{accuracy_score(y_true, y_pred):.2%}")
@@ -75,7 +97,7 @@ if uploaded_file is not None:
                 m3.metric("MCC", f"{matthews_corrcoef(y_true, y_pred):.4f}")
                 m4.metric("F1 Score", f"{f1_score(y_true, y_pred):.4f}")
 
-                # --- VISUALS: Confusion Matrix & Report (Requirement D) ---
+                # --- VISUALS: Confusion Matrix & Report ---
                 st.subheader("📈 Performance Visualization")
                 col_a, col_b = st.columns(2)
                 
@@ -84,6 +106,8 @@ if uploaded_file is not None:
                     fig, ax = plt.subplots()
                     cm = confusion_matrix(y_true, y_pred)
                     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=ax)
+                    ax.set_xlabel('Predicted')
+                    ax.set_ylabel('Actual')
                     st.pyplot(fig)
                 
                 with col_b:
@@ -94,7 +118,7 @@ if uploaded_file is not None:
                 st.error("The uploaded CSV must contain the target column 'y' for evaluation.")
 
         except Exception as e:
-            st.error(f"Error: {e}. Ensure the CSV format matches the training data and files exist in the /model folder.")
+            st.error(f"Error: {e}. Check if files exist in the '/model' folder and CSV format is correct.")
 
 else:
-    st.info("Please upload a CSV file to begin.")
+    st.info("👋 Please upload a CSV file or download the sample data from the sidebar to begin.")
