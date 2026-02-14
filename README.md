@@ -1,14 +1,14 @@
 # Bank Marketing Campaign Prediction: A Comparative ML Study
-**ML Assignment 2 - BITS Pilani**
+**ML Assignment 2 - BITS Pilani 2025ab05220**
 
 ## a. Problem Statement
 The objective of this project is to predict whether a bank client will subscribe to a term deposit (target variable `y`) based on various attributes such as age, job, marital status, and previous marketing campaign outcomes[cite: 5, 28]. [cite_start]This is a binary classification problem aimed at identifying the most effective machine learning model to help the bank optimize its marketing strategy[cite: 9, 29].
 
 ## b. Dataset Description [1 mark]
 - **Source:** [UCI Machine Learning Repository - Bank Marketing Dataset](https://archive.ics.uci.edu/dataset/222/bank+marketing)[cite: 28].
-- **Instances:** 4,521 (Meeting the minimum 500 requirement)[cite: 30].
-- **Features:** 16 independent variables (Meeting the minimum 12 requirement)[cite: 30].
-- **Target Variable:** `y` (Binary: 'yes' or 'no')[cite: 29].
+- **Instances:** 4,521 (Meeting the minimum 500 requirement).
+- **Features:** 16 independent variables (Meeting the minimum 12 requirement).
+- **Target Variable:** `y` (Binary: 'yes' or 'no').
 
 ## c. Models Used: [6 marks]
 The following table provides a comparison of the evaluation metrics calculated for all 6 required models[cite: 32, 69, 70]:
@@ -25,7 +25,7 @@ The following table provides a comparison of the evaluation metrics calculated f
 ---
 
 ### Observations on Model Performance [3 marks]
-Below are the performance observations for each implemented model[cite: 79, 80]:
+Below are the performance observations for each implemented model:
 
 | ML Model Name | Observation about model performance |
 | :--- | :--- |
@@ -39,12 +39,12 @@ Below are the performance observations for each implemented model[cite: 79, 80]:
 ---
 
 ## 🛠️ Repository Structure
-As per Step 3 requirements[cite: 50, 51]:
-- `app.py`: Interactive Streamlit frontend[cite: 52].
-- `requirements.txt`: List of dependencies (scikit-learn, pandas, etc.)[cite: 53, 56].
-- `README.md`: Project documentation[cite: 54, 65].
-- `model/`: Folder containing saved `.pkl` model files for all 6 implementations[cite: 55].
+As per Step 3 requirements:
+- `app.py`: Interactive Streamlit frontend.
+- `requirements.txt`: List of dependencies (scikit-learn, pandas, etc.).
+- `README.md`: Project documentation.
+- `model/`: Folder containing saved `.pkl` model files for all 6 implementations.
 
 ## 🚀 Deployment
-- **Live App Link:** [Insert your Streamlit Cloud link here][cite: 19].
-- **Platform:** Streamlit Community Cloud[cite: 20, 81].
+- **Live App Link:** [https://bank-marketing-campaign-prediction-a-comparative-ml-studygit-i.streamlit.app/].
+- **Platform:** Streamlit Community Cloud.
