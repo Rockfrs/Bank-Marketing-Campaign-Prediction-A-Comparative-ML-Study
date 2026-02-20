@@ -4,13 +4,13 @@
 ## a. Problem Statement
 The objective of this project is to predict whether a bank client will subscribe to a term deposit (target variable `y`) based on various attributes such as age, job, marital status, and previous marketing campaign outcomes[cite: 5, 28]. [cite_start]This is a binary classification problem aimed at identifying the most effective machine learning model to help the bank optimize its marketing strategy[cite: 9, 29].
 
-## b. Dataset Description [1 mark]
+## b. Dataset Description
 - **Source:** [UCI Machine Learning Repository - Bank Marketing Dataset](https://archive.ics.uci.edu/dataset/222/bank+marketing)[cite: 28].
 - **Instances:** 4,521 (Meeting the minimum 500 requirement).
 - **Features:** 16 independent variables (Meeting the minimum 12 requirement).
 - **Target Variable:** `y` (Binary: 'yes' or 'no').
 
-## c. Models Used: [6 marks]
+## c. Models Used:
 The following table provides a comparison of the evaluation metrics calculated for all 6 required models[cite: 32, 69, 70]:
 
 | ML Model Name | Accuracy | AUC | Precision | Recall | F1 | MCC |
@@ -24,7 +24,7 @@ The following table provides a comparison of the evaluation metrics calculated f
 
 ---
 
-### Observations on Model Performance [3 marks]
+### Observations on Model Performance
 Below are the performance observations for each implemented model:
 
 | ML Model Name | Observation about model performance |
